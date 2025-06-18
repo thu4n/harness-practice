@@ -1,3 +1,3 @@
-# harness-aks-practice
+# harness-practice
 
-This repo is to practice using Harness CI/CD with AKS clusters.
+This repo is to practice using Harness CI/CD with Kubernetes clusters.
