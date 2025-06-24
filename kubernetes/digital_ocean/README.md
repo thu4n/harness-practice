@@ -1,1 +1,0 @@
-This is a WIP, I might not finish it since the main focus is Harness, not where the cluster is hosted.
