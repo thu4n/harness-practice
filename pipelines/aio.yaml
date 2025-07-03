@@ -1,0 +1,30 @@
+pipeline:
+  name: AIO
+  identifier: AIO
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Shell
+        identifier: Shell
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "Hello wolrd"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
