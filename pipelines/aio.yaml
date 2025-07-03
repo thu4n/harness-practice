@@ -38,4 +38,4 @@ pipeline:
       type: String
       description: ""
       required: true
-      value: <+input>.allowedValues(test,test-2)
+      value: <+pipeline.delegateSelectors>
