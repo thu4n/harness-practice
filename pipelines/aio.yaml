@@ -28,3 +28,9 @@ pipeline:
             type: Cloud
             spec: {}
         tags: {}
+  variables:
+    - name: test
+      type: Secret
+      description: ""
+      required: true
+      value: thu4n-github-pat
