@@ -33,4 +33,4 @@ pipeline:
       type: Secret
       description: ""
       required: true
-      value: thu4n-github-pat
+      value: <+input>
