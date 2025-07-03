@@ -9,8 +9,9 @@ pipeline:
         name: Shell
         identifier: Shell
         description: ""
-        type: Custom
+        type: CI
         spec:
+          cloneCodebase: false
           execution:
             steps:
               - step:
