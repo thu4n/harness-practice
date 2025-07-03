@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_thu4n_harness_practice_1751551669054-pr-trigger-input-set
+  identifier: Build_thu4n_harness_practice_1751551669054prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_thu4n_harness_practice_1751551669054
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
