@@ -1,0 +1,15 @@
+inputSet:
+  name: hub
+  identifier: hub
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: CloneRepo
+    properties:
+      ci:
+        codebase:
+          repoName: SVUIT/hub
+          build:
+            type: branch
+            spec:
+              branch: main

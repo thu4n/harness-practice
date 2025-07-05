@@ -1,0 +1,15 @@
+inputSet:
+  name: mmtt
+  identifier: mmtt
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: CloneRepo
+    properties:
+      ci:
+        codebase:
+          repoName: SVUIT/mmtt
+          build:
+            type: branch
+            spec:
+              branch: main

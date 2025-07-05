@@ -1,0 +1,50 @@
+pipeline:
+  name: AIO
+  identifier: AIO
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Shell
+        identifier: Shell
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Echo Welcome Message
+                  identifier: Echo_Welcome_Message
+                  spec:
+                    shell: Bash
+                    command: |-
+                      curl -i -X POST \
+                      'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=0e6wLndETGC6pO20LQZHpA&orgIdentifier=default&projectIdentifier=default_project&notesForPipelineExecution=AIO' \
+                      -H 'Content-Type: application/json' \
+                      -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
+                      -d '{
+                        "inputSetReferences": [
+                          "mmtt"
+                        ]
+                      }'
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+        tags: {}
+  variables:
+    - name: HARNESS_API_KEY
+      type: Secret
+      description: ""
+      required: true
+      value: <+input>
+    - name: PIPELINE_IDENTIFIER
+      type: String
+      description: ""
+      required: true
+      value: <+input>
