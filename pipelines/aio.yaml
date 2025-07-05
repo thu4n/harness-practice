@@ -70,6 +70,8 @@ pipeline:
                           "mmtt"
                         ]
                       }
+                    delegateSelectors:
+                      - docker-delegate
                   timeout: 10s
         tags: {}
   variables:
