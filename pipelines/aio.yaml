@@ -21,21 +21,56 @@ pipeline:
                   spec:
                     shell: Bash
                     command: |-
-                      curl -i -X POST \
-                      'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=0e6wLndETGC6pO20LQZHpA&orgIdentifier=default&projectIdentifier=default_project&notesForPipelineExecution=AIO' \
-                      -H 'Content-Type: application/json' \
-                      -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
-                      -d '{
-                        "inputSetReferences": [
-                          "mmtt"
-                        ]
-                      }'
+                      echo this curl command is commented out
+                      # curl -i -X POST \
+                      # 'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=0e6wLndETGC6pO20LQZHpA&orgIdentifier=default&projectIdentifier=default_project&notesForPipelineExecution=AIO' \
+                      # -H 'Content-Type: application/json' \
+                      # -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
+                      # -d '{
+                      #   "inputSetReferences": [
+                      #     "mmtt"
+                      #   ]
+                      # }'
           platform:
             os: Linux
             arch: Amd64
           runtime:
             type: Cloud
             spec: {}
+        tags: {}
+    - stage:
+        name: test
+        identifier: test
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Http
+                  name: Http_1
+                  identifier: Http_1
+                  spec:
+                    url: https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList
+                    method: POST
+                    headers:
+                      - key: accountIdentifier
+                        value: 0e6wLndETGC6pO20LQZHpA
+                      - key: orgIdentifier
+                        value: default
+                      - key: projectIdentifier
+                        value: default_project
+                      - key: notesForPipelineExecution
+                        value: AIO
+                    inputVariables: []
+                    outputVariables: []
+                    requestBody: |-
+                      {
+                        "inputSetReferences": [
+                          "mmtt"
+                        ]
+                      }
+                  timeout: 10s
         tags: {}
   variables:
     - name: HARNESS_API_KEY
