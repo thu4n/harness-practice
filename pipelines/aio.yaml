@@ -22,19 +22,14 @@ pipeline:
                     shell: Bash
                     command: |-
                       curl -i -X POST \
-                      'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=$accountIdentifier&orgIdentifier=$orgIdentifier&projectIdentifier=$projectIdentifier&notesForPipelineExecution=AIO' \
+                      'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=0e6wLndETGC6pO20LQZHpA&orgIdentifier=default&projectIdentifier=default_project&notesForPipelineExecution=AIO' \
                       -H 'Content-Type: application/json' \
                       -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
                       -d '{
                         "inputSetReferences": [
-                          $inputSetReference
+                          mmtt
                         ]
                       }'
-                    envVariables:
-                      accountIdentifier: 0e6wLndETGC6pO20LQZHpA
-                      orgIdentifier: default
-                      projectIdentifier: default_project
-                      inputSetReference: mmtt
           platform:
             os: Linux
             arch: Amd64
