@@ -1,0 +1,15 @@
+inputSet:
+  name: sink
+  identifier: sink
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: CloneRepo
+    properties:
+      ci:
+        codebase:
+          repoName: SVUIT/Sink
+          build:
+            type: branch
+            spec:
+              branch: master
