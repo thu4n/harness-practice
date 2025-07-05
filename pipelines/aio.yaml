@@ -27,7 +27,7 @@ pipeline:
                       -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
                       -d '{
                         "inputSetReferences": [
-                          mmtt
+                          "mmtt"
                         ]
                       }'
           platform:
