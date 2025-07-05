@@ -22,9 +22,9 @@ pipeline:
                     shell: Bash
                     command: |-
                       curl -i -X POST \
-                      'https://app.harness.io/pipeline/api/pipeline/execute/$identifier/inputSetList?accountIdentifier=$accountIdentifier&orgIdentifier=$orgIdentifier&projectIdentifier=$projectIdentifier&notesForPipelineExecution=AIO' \
+                      'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=$accountIdentifier&orgIdentifier=$orgIdentifier&projectIdentifier=$projectIdentifier&notesForPipelineExecution=AIO' \
                       -H 'Content-Type: application/json' \
-                      -H 'x-api-key: $HARNESS_API_KEY' \
+                      -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
                       -d '{
                         "inputSetReferences": [
                           $inputSetReference
@@ -34,8 +34,6 @@ pipeline:
                       accountIdentifier: 0e6wLndETGC6pO20LQZHpA
                       orgIdentifier: default
                       projectIdentifier: default_project
-                      identifier: <+pipeline.variables.PIPELINE_IDENTIFIER>
-                      HARNESS_API_KEY: <+pipeline.variables.HARNESS_API_KEY>
                       inputSetReference: mmtt
           platform:
             os: Linux
