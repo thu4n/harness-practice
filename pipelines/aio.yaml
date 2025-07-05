@@ -19,8 +19,24 @@ pipeline:
                   name: Echo Welcome Message
                   identifier: Echo_Welcome_Message
                   spec:
-                    shell: Sh
-                    command: echo "Welcome to Harness CI"
+                    shell: Bash
+                    command: |-
+                      curl -i -X POST \
+                      'https://app.harness.io/pipeline/api/pipeline/execute/$identifier/inputSetList?accountIdentifier=$accountIdentifier&orgIdentifier=$orgIdentifier&projectIdentifier=$projectIdentifier&notesForPipelineExecution=AIO' \
+                      -H 'Content-Type: application/json' \
+                      -H 'x-api-key: $HARNESS_API_KEY' \
+                      -d '{
+                        "inputSetReferences": [
+                          $inputSetReference
+                        ]
+                      }'
+                    envVariables:
+                      accountIdentifier: 0e6wLndETGC6pO20LQZHpA
+                      orgIdentifier: default
+                      projectIdentifier: default_project
+                      identifier: <+pipeline.variables.PIPELINE_IDENTIFIER>
+                      HARNESS_API_KEY: <+pipeline.variables.HARNESS_API_KEY>
+                      inputSetReference: mmtt
           platform:
             os: Linux
             arch: Amd64
@@ -29,13 +45,13 @@ pipeline:
             spec: {}
         tags: {}
   variables:
-    - name: test
+    - name: HARNESS_API_KEY
       type: Secret
       description: ""
       required: true
       value: <+input>
-    - name: PIPELINE_NAME
+    - name: PIPELINE_IDENTIFIER
       type: String
       description: ""
       required: true
-      value: <+pipeline.delegateSelectors>
+      value: <+input>
