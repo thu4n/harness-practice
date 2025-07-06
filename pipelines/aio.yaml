@@ -58,7 +58,7 @@ pipeline:
                       }
                     delegateSelectors:
                       - docker-delegate
-                  timeout: 10s
+                  timeout: 1m
         tags: {}
   variables:
     - name: HARNESS_API_KEY
