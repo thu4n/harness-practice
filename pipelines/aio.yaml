@@ -20,22 +20,45 @@ pipeline:
                   identifier: Echo_Welcome_Message
                   spec:
                     shell: Bash
-                    command: |-
-                      curl -i -X POST \
-                      'https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=0e6wLndETGC6pO20LQZHpA&orgIdentifier=default&projectIdentifier=default_project&notesForPipelineExecution=AIO' \
-                      -H 'Content-Type: application/json' \
-                      -H 'x-api-key: <+pipeline.variables.HARNESS_API_KEY>' \
-                      -d '{
-                        "inputSetReferences": [
-                          "mmtt"
-                        ]
-                      }'
+                    command: echo hello
           platform:
             os: Linux
             arch: Amd64
           runtime:
             type: Cloud
             spec: {}
+        tags: {}
+    - stage:
+        name: HTTP
+        identifier: HTTP
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Http
+                  name: Harness API
+                  identifier: Harness_API
+                  spec:
+                    url: https://app.harness.io/pipeline/api/pipeline/execute/<+pipeline.variables.PIPELINE_IDENTIFIER>/inputSetList?accountIdentifier=0e6wLndETGC6pO20LQZHpA&orgIdentifier=default&projectIdentifier=default_project&notesForPipelineExecution=AIO
+                    method: POST
+                    headers:
+                      - key: x-api-key
+                        value: <+pipeline.variables.HARNESS_API_KEY>
+                      - key: Content-Type
+                        value: application/json
+                    inputVariables: []
+                    outputVariables: []
+                    requestBody: |-
+                      {
+                        "inputSetReferences": [
+                          "mmtt"
+                        ]
+                      }
+                    delegateSelectors:
+                      - docker-delegate
+                  timeout: 10s
         tags: {}
   variables:
     - name: HARNESS_API_KEY
